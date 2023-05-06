@@ -1,0 +1,23 @@
+import json
+import logging
+
+# Set up logging
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+def lambda_handler(event, context):
+    # get the temperature in Celsius from the event body
+    celsius = float(event['body'])
+
+    # convert Celsius to Fahrenheit
+    fahrenheit = (celsius * 1.8) + 32
+
+    # Log input and output values
+    logger.info(f"Input temperature in Celsius: {celsius}")
+    logger.info(f"Output temperature in Fahrenheit: {fahrenheit}")
+
+    # return the result in the response body
+    return {
+        'statusCode': 200,
+        'body': json.dumps({'fahrenheit': fahrenheit})
+    }

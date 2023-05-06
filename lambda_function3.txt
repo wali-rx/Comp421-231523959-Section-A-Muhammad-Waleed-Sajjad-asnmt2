@@ -1,0 +1,19 @@
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+def lambda_handler(event, context):
+    # Read input numbers from event
+    num1 = event['num1']
+    num2 = event['num2']
+    
+    # Compute product
+    product = num1 * num2
+    
+    # Log product
+    logger.info(f"Product of {num1} and {num2} is {product}")
+    
+    # Return result
+    return {
+        'statusCode': 200,
+        'body': product
+    }
